@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <!-- QRCode.js 库已移除，因为改用静态图片 -->
     <style>
         :root {
             --bg-deep: #020510;
@@ -125,7 +125,8 @@
 
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .contact-card, .qr-card { background: rgba(15,20,45,0.5); backdrop-filter: blur(18px); border-radius: var(--radius-xl); padding: 36px 32px; border: 1px solid var(--border-glass); }
-        .qr-wrapper { background: #fff; padding: 16px; border-radius: 12px; transition: transform 0.5s; }
+        .qr-wrapper { background: #fff; padding: 16px; border-radius: 12px; transition: transform 0.5s; display: flex; justify-content: center; align-items: center; }
+        .qr-wrapper img { width: 100%; height: auto; border-radius: 8px; }
         .qr-card:hover .qr-wrapper { transform: scale(1.06); }
         .footer { text-align: center; padding: 35px; color: var(--text-muted); }
 
@@ -231,7 +232,10 @@
                     </div>
                     <div class="qr-card">
                         <h3>扫码联系</h3>
-                        <div class="qr-wrapper" id="qrCodeContainer"></div>
+                        <!-- 静态二维码图片，替换掉了原来的动态生成 -->
+                        <div class="qr-wrapper">
+                            <img src="IMG_6356.JPG" alt="微信二维码" style="width:100%; height:auto; border-radius:8px;">
+                        </div>
                         <p class="wechat-id">微信号：xuzai_98</p>
                     </div>
                 </div>
@@ -347,8 +351,6 @@
             function anim() { ctx.clearRect(0,0,w,h); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(anim); }
             anim();
         })();
-
-        new QRCode(document.getElementById('qrCodeContainer'), { text:'xuzai_98', width:150, height:150, colorDark:'#0a0f25', colorLight:'#ffffff' });
 
         window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60));
     </script>
